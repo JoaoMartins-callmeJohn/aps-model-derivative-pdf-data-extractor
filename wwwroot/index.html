@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="https://cdn.autodesk.io/favicon.ico">
+    <link rel="stylesheet" href="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/inspire-tree-dom@4.0.6/dist/inspire-tree-light.min.css">
+    <link rel="stylesheet" href="/main.css">
+    <title>Autodesk Platform Services: Model Derivative 2D Data Extractor</title>
+</head>
+
+<body>
+    <div id="header">
+        <img class="logo" src="https://cdn.autodesk.io/logo/black/stacked.png" alt="Autodesk Platform Services">
+        <span class="title">Model Derivative 2D Data Extractor</span>
+        <button id="login" style="visibility: hidden;">Login</button>
+    </div>
+    <div id="sidebar">
+        <div id="tree"></div>
+        <div id="history">
+            <div class="panel-title">Extractions <span class="hint">(Model Derivative calls per .sdb)</span></div>
+            <table>
+                <thead>
+                    <tr><th>Time</th><th>File / view</th><th>MD calls</th><th>Text</th></tr>
+                </thead>
+                <tbody id="history-rows">
+                    <tr class="empty"><td colspan="4">No extractions yet.</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="toolbar">
+        <label for="views">2D view:</label>
+        <select id="views" disabled>
+            <option>Select a DWG, RVT or PDF file</option>
+        </select>
+        <button id="extract" disabled title="Extract all properties and text of the current view to a .sdb file">
+            Extract properties &amp; text (.sdb)
+        </button>
+        <div id="counter" title="Model Derivative calls made by the server for the last .sdb">
+            <span class="label">MD calls:</span> <span id="counter-value">–</span>
+        </div>
+        <span id="status"></span>
+    </div>
+    <div id="breakdown" hidden>
+        <div class="panel-title">
+            Last extraction: <span id="breakdown-title"></span>
+            <button id="breakdown-close" title="Close">×</button>
+        </div>
+        <table>
+            <thead>
+                <tr><th>Model Derivative endpoint</th><th>Calls</th><th>Status codes</th><th>Time (ms)</th></tr>
+            </thead>
+            <tbody id="breakdown-rows"></tbody>
+            <tfoot>
+                <tr><th>Total</th><th id="breakdown-total"></th><th colspan="2"></th></tr>
+            </tfoot>
+        </table>
+        <div id="breakdown-notes"></div>
+    </div>
+    <div id="preview"></div>
+    <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/viewer3D.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+    <script src="https://unpkg.com/inspire-tree@4.3.1/dist/inspire-tree.js"></script>
+    <script src="https://unpkg.com/inspire-tree-dom@4.0.6/dist/inspire-tree-dom.min.js"></script>
+    <script src="/main.js" type="module"></script>
+</body>
+
+</html>
